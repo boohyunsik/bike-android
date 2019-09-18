@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), MainContact.View {
         TmapManager(this)
     }
 
-    val selectLocationSheetManager by lazy {
+    private val selectLocationSheetManager by lazy {
         SelectLocationSheetManager(presenter, this)
     }
 
