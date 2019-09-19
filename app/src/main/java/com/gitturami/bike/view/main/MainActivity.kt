@@ -14,6 +14,7 @@ import com.gitturami.bike.logger.Logger
 import com.gitturami.bike.model.common.pojo.DefaultItem
 import com.gitturami.bike.model.restaurant.pojo.Restaurant
 import com.gitturami.bike.model.station.pojo.Station
+import com.gitturami.bike.model.station.pojo.SummaryStation
 import com.gitturami.bike.view.main.map.TmapManager
 import com.gitturami.bike.view.main.presenter.MainPresenter
 import com.gitturami.bike.view.main.sheet.select.SelectLocationSheetManager
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity(), MainContact.View {
         TmapManager(this)
     }
 
-    private val selectLocationSheetManager by lazy {
+    val selectLocationSheetManager by lazy {
         SelectLocationSheetManager(presenter, this)
     }
 
@@ -145,7 +146,11 @@ class MainActivity : AppCompatActivity(), MainContact.View {
         finishSearchView.text = text
     }
 
-    override fun setSelectDialogContants(station: Station) {
+    override fun setSelectDialogContants(id: String) {
+        presenter.loadDetailInfoOfStation(id)
+    }
+
+    override fun setSelectBottomSheet(station: Station) {
         selectLocationSheetManager.initStation(station)
         selectLocationSheetManager.collapseSelectSheet()
     }
@@ -190,7 +195,7 @@ class MainActivity : AppCompatActivity(), MainContact.View {
         presenter.setRestaurantMarkers()
     }
 
-    override fun setMarker(x: Double, y: Double, station: Station) {
+    override fun setMarker(x: Double, y: Double, station: SummaryStation) {
         tMapManager.setMarker(x, y, station)
     }
 
