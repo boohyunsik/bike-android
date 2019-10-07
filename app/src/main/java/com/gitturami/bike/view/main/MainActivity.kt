@@ -85,6 +85,9 @@ class MainActivity : AppCompatActivity(), MainContact.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        hideCategorySheet()
+        hideItemSheet()
+
         presenter = MainPresenter(applicationContext)
 
         initSettingButton()

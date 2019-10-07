@@ -16,5 +16,6 @@ class PrepareHandler: StateHandler {
         view.hideStationSheet()
         view.hideCategorySheet()
         view.hideWayPointSheet()
+        view.hideItemSheet()
     }
 }

@@ -35,8 +35,12 @@ class ItemSheetManager(activity: MainActivity) {
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
-                    behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                    Logger.i(TAG, "expand!")
+                } else if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    Logger.i(TAG, "collapsed!")
+                } else if (newState == BottomSheetBehavior.STATE_SETTLING) {
+                    Logger.i(TAG, "settling!")
                 }
             }
         }
@@ -44,24 +48,13 @@ class ItemSheetManager(activity: MainActivity) {
     }
 
     fun hideSheet() {
-        behavior.isHideable = true
+        Logger.i(TAG, "hideSheet")
         behavior.state = BottomSheetBehavior.STATE_HIDDEN
-        mainImgView.background = null
     }
 
     fun openSheet() {
-        runBlocking {
-            if (selectedItem?.getImage1Url() != null) {
-                Logger.i(TAG, "set image1 view : ${selectedItem?.getImage1Url()}")
-                Glide.with(sheet)
-                        .load(selectedItem?.getImage1Url())
-                        .into(mainImgView)
-            } else {
-                // TODO : when image is null, imgView's background must be set empty img.
-            }
-        }
-        behavior.isHideable = false
-        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        Logger.i(TAG, "openSheet")
+        behavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     fun setItem(context: Context, item: DefaultItem, itemType: ItemType) {
@@ -69,6 +62,15 @@ class ItemSheetManager(activity: MainActivity) {
         lat = item.getLatitude().toDouble()
         lon = item.getLongitude().toDouble()
         selectedItem = item
+
+        if (selectedItem?.getImage1Url() != null) {
+            Logger.i(TAG, "set image1 view : ${selectedItem?.getImage1Url()}")
+            Glide.with(sheet)
+                    .load(selectedItem?.getImage1Url())
+                    .into(mainImgView)
+        } else {
+            // TODO : when image is null, imgView's background must be set empty img.
+        }
 
         when (itemType) {
             ItemType.CAFE -> {

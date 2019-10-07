@@ -48,24 +48,20 @@ class DetailWayPointSheetManager(activity: MainActivity, listener: (State) -> Un
     }
 
     fun halfWayPointSheet() {
-        sheetBehavior.isHideable = false
         sheetBehavior.peekHeight = 200
         sheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
     }
 
     fun collapseWayPointSheet() {
-        sheetBehavior.isHideable = false
         sheetBehavior.peekHeight = 195
         sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     fun hiddenWayPointSheet() {
-        sheetBehavior.isHideable = true
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
     } 
 
     fun expandWayPointSheet() {
-        sheetBehavior.isHideable = false
         sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 

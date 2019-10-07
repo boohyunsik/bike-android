@@ -20,16 +20,6 @@ class CategorySheetManager(activity: MainActivity) {
         sheetBehavior = BottomSheetBehavior.from(wayPointSheet)
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         wayPointSheet.setOnTouchListener { view, motionEvent -> true }
-        sheetBehavior.bottomSheetCallback = object: BottomSheetBehavior.BottomSheetCallback() {
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-            }
-
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
-                    sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                }
-            }
-        }
 
         activity.category_shopping.setOnClickListener{ v ->
             activity.getPresenter().setState(State.SELECT_WAYPOINT)
@@ -51,13 +41,11 @@ class CategorySheetManager(activity: MainActivity) {
 
     fun collapseWayPointSheet() {
         Logger.i(TAG, "halfWayPointSheet()")
-        sheetBehavior.isHideable = false
-        sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        sheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     fun hiddenWayPointSheet() {
         Logger.i(TAG, "hiddenWayPointSheet")
-        sheetBehavior.isHideable = true
         sheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
     }
 }

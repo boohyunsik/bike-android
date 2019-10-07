@@ -40,7 +40,7 @@ class TmapManager(activity: MainActivity): TMapGpsManager.onLocationChangedCallb
             ItemType.HOTEL to bitmapManager.hotelMarker,
             ItemType.FOOD to bitmapManager.foodMarker,
             ItemType.SHOPPING to bitmapManager.shoppingMarker,
-            ItemType.TERRAIN to bitmapManager.parkMarker
+            ItemType.TERRAIN to bitmapManager.terrainMarker
     )
 
     enum class Constants {

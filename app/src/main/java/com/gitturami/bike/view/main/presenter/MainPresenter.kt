@@ -177,7 +177,6 @@ class MainPresenter(context: Context) : MainContact.Presenter {
                 }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 {
-                                    Logger.i(TAG, "$it")
                                     val shared = (it as SummaryStation).shared
                                     val type = when {
                                         shared > 70 -> ItemType.STATION_EMPTY
